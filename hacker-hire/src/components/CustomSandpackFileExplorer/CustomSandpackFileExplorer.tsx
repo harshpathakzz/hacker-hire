@@ -13,10 +13,7 @@ const CustomSandpackFileExplorer: React.FC = () => {
   const [fileName, setFileName] = useState<string>("");
 
   const { sandpack } = useSandpack();
-  const { code, updateCode } = useActiveCode();
-  console.log(sandpack);
-  console.log(sandpack.activeFile, sandpack.visibleFiles);
-  console.log(code, typeof code, typeof sandpack);
+  console.log("rerendered sidebar");
 
   return (
     <div className="custom-sandpack-file-explorer">
