@@ -5,7 +5,6 @@ import { sandpackDark } from "@codesandbox/sandpack-themes";
 import {
   SandpackProvider,
   SandpackLayout,
-  SandpackCodeEditor,
   SandpackPreview,
   SandpackConsole,
   SandpackFileExplorer,
@@ -13,6 +12,8 @@ import {
 } from "@codesandbox/sandpack-react";
 
 import CustomSandpackFileExplorer from "@/components/CustomSandpackFileExplorer/CustomSandpackFileExplorer";
+// import CodeCollab from "@/components/CodeCollab/CodeCollab";
+import { SandpackCodeEditor } from "@/components/editor/Test";
 
 interface Params {
   roomId: string;
@@ -32,9 +33,14 @@ export default function Page(params: Params) {
         files={fileToStart}
         template="react"
       >
+        <div>
+          <h1 className="text-white">Update</h1>
+          {/* <CodeCollab roomId={params.roomId} /> */}
+        </div>
+        {/* <CodeCollab roomId={params.roomId} /> */}
         <SandpackLayout>
           <CustomSandpackFileExplorer />
-          <Editor />
+          <SandpackCodeEditor />
           <SandpackPreview />
         </SandpackLayout>
       </SandpackProvider>

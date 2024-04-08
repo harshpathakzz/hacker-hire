@@ -5,6 +5,12 @@ settings:
   excludeLinksFromLockfile: false
 
 dependencies:
+  '@codemirror/state':
+    specifier: ^6.4.1
+    version: 6.4.1
+  '@codemirror/view':
+    specifier: ^6.26.1
+    version: 6.26.1
   '@codesandbox/sandpack-react':
     specifier: ^2.13.7
     version: 2.13.7(@lezer/common@1.2.1)(react-dom@18.2.0)(react@18.2.0)
@@ -20,6 +26,9 @@ dependencies:
   '@radix-ui/react-slot':
     specifier: ^1.0.2
     version: 1.0.2(@types/react@18.2.74)(react@18.2.0)
+  '@stitches/core':
+    specifier: ^1.2.8
+    version: 1.2.8
   class-variance-authority:
     specifier: ^0.7.0
     version: 0.7.0
