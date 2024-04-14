@@ -1,6 +1,7 @@
 import type { Extension } from "@codemirror/state";
 import type { KeyBinding } from "@codemirror/view";
-import { forwardRef } from "react";
+import { Socket } from "socket.io-client";
+import { useRef, forwardRef, useEffect, use } from "react";
 
 import {
   useActiveCode,
@@ -59,6 +60,8 @@ export interface CodeEditorProps {
    * for that syntax mode
    */
   additionalLanguages?: CustomLanguage[];
+  roomId?: string;
+  socketRef?: React.MutableRefObject<Socket | null>;
 }
 
 export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
@@ -77,14 +80,43 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
       showReadOnly,
       additionalLanguages,
       className,
+      roomId,
+      socketRef,
       ...props
     },
     ref
   ) => {
     const { sandpack } = useSandpack();
+    const files = sandpack.files;
     const { code, updateCode, readOnly: readOnlyFile } = useActiveCode();
     const { activeFile, status, editorState } = sandpack;
     const shouldShowTabs = true;
+    const joinedRoomRef: boolean = useRef(false);
+    useEffect(() => {
+      if (socketRef.current && !joinedRoomRef.current) {
+        socketRef.current.emit("join-room", roomId, files);
+        joinedRoomRef.current = true;
+        console.log("Joined room", roomId);
+      }
+    }, [roomId, socketRef, files]);
+
+    useEffect(() => {
+      if (socketRef.current) {
+        socketRef.current.on("receive-code-update", (newFiles) => {
+          console.log("Received code update", newFiles);
+          sandpack.updateFile(newFiles);
+        });
+      }
+    }, [socketRef]);
+
+    useEffect(() => {
+      if (socketRef.current) {
+        socketRef.current.on("initial-code-update", (newFiles) => {
+          console.log("Initial code update", newFiles);
+          sandpack.updateFile(newFiles);
+        });
+      }
+    }, [socketRef]);
 
     const classNames = useClassNames();
 
@@ -93,7 +125,13 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
       shouldUpdatePreview = true
     ): void => {
       updateCode(newCode, shouldUpdatePreview);
+      console.log("Emitting code update", newCode, files);
     };
+
+    useEffect(() => {
+      socketRef.current?.emit("code-update", roomId, files);
+      console.log("Emitting code update", files);
+    }, [files]);
 
     return (
       <SandpackStack className={classNames("editor", [className])} {...props}>
@@ -110,7 +148,6 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
             filePath={activeFile}
             initMode={initMode || sandpack.initMode}
             onCodeUpdate={(newCode: string) => {
-              console.log("Printing code", newCode);
               return handleCodeUpdate(newCode, sandpack.autoReload ?? true);
             }}
             readOnly={readOnly || readOnlyFile}
@@ -118,7 +155,6 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
             showLineNumbers={showLineNumbers}
             showReadOnly={showReadOnly}
             wrapContent={wrapContent}
-            closeT
           />
 
           {showRunButton && (!sandpack.autoReload || status === "idle") ? (
