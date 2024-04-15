@@ -1,11 +1,10 @@
 "use client";
-import React from "react";
-import Editor from "@/components/editor/Editor";
+import React, { useEffect, useRef } from "react";
+import { io, Socket } from "socket.io-client";
 import { sandpackDark } from "@codesandbox/sandpack-themes";
 import {
   SandpackProvider,
   SandpackLayout,
-  SandpackCodeEditor,
   SandpackPreview,
   SandpackConsole,
   SandpackFileExplorer,
@@ -13,11 +12,17 @@ import {
 } from "@codesandbox/sandpack-react";
 
 import CustomSandpackFileExplorer from "@/components/CustomSandpackFileExplorer/CustomSandpackFileExplorer";
+// import CodeCollab from "@/components/CodeCollab/CodeCollab";
+import { SandpackCodeEditor } from "@/components/editor/Test";
 
-interface Params {
-  roomId: string;
-}
-export default function Page(params: Params) {
+export default function Page({ params }: { params: { roomId: string } }) {
+  console.log("Rendered Room Page");
+  console.log("Room id", params.roomId);
+  const socketRef = useRef<Socket | null>(null);
+  useEffect(() => {
+    socketRef.current = io("http://localhost:4000");
+  }, []);
+
   const fileToStart = {
     "/App.js": `export default function App() {
       return <h1>Hello Sandpack</h1>;
@@ -32,9 +37,12 @@ export default function Page(params: Params) {
         files={fileToStart}
         template="react"
       >
+        <div>
+          <h1 className="text-white">Update</h1>
+        </div>
         <SandpackLayout>
           <CustomSandpackFileExplorer />
-          <Editor />
+          <SandpackCodeEditor socketRef={socketRef} roomId={params.roomId} />
           <SandpackPreview />
         </SandpackLayout>
       </SandpackProvider>

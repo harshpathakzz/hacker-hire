@@ -13,6 +13,7 @@ const CustomSandpackFileExplorer: React.FC = () => {
   const [fileName, setFileName] = useState<string>("");
 
   const { sandpack } = useSandpack();
+  // console.log(sandpack);
   console.log("rerendered sidebar");
 
   return (
