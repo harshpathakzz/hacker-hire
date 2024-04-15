@@ -42,6 +42,7 @@ io.on("connection", (socket) => {
 
     // Broadcast the updated files object to all clients in the room
     socket.to(roomId).emit("receive-code-update", rooms[roomId]);
+    // socket.broadcast.to(roomId).emit("receive-code-update", rooms[roomId]);
     console.log("recieve code update", rooms[roomId]);
   });
 

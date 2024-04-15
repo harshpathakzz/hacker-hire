@@ -1,7 +1,7 @@
 import type { Extension } from "@codemirror/state";
 import type { KeyBinding } from "@codemirror/view";
 import { Socket } from "socket.io-client";
-import { useRef, forwardRef, useEffect, use } from "react";
+import { useRef, forwardRef, useEffect, useState } from "react";
 
 import {
   useActiveCode,
@@ -92,6 +92,7 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
     const { activeFile, status, editorState } = sandpack;
     const shouldShowTabs = true;
     const joinedRoomRef: boolean = useRef(false);
+    const [prevFiles, setPrevFiles] = useState(files);
     useEffect(() => {
       if (socketRef.current && !joinedRoomRef.current) {
         socketRef.current.emit("join-room", roomId, files);
@@ -125,13 +126,16 @@ export const SandpackCodeEditor = forwardRef<CodeEditorRef, CodeEditorProps>(
       shouldUpdatePreview = true
     ): void => {
       updateCode(newCode, shouldUpdatePreview);
-      console.log("Emitting code update", newCode, files);
+      console.log("Emitting code update handel code update", newCode, files);
     };
 
     useEffect(() => {
-      socketRef.current?.emit("code-update", roomId, files);
-      console.log("Emitting code update", files);
-    }, [files]);
+      if (JSON.stringify(prevFiles) !== JSON.stringify(files)) {
+        socketRef.current?.emit("code-update", roomId, files);
+        console.log("Emitting code update useEffect", files);
+        setPrevFiles(files);
+      }
+    }, [files, roomId, socketRef, prevFiles]);
 
     return (
       <SandpackStack className={classNames("editor", [className])} {...props}>
