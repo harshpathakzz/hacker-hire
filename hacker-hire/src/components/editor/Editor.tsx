@@ -16,6 +16,8 @@ import CustomSandpackFileExplorer from "../CustomSandpackFileExplorer/CustomSand
 
 const Editor: React.FC = () => {
   console.log("rerendered code editor");
+  const { sandpack } = useSandpack();
+  console.log(sandpack);
 
   return (
     <SandpackCodeEditor
