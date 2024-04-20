@@ -6,22 +6,21 @@ import {
   SandpackProvider,
   SandpackLayout,
   SandpackPreview,
+  SandpackCodeEditor,
   SandpackConsole,
   SandpackFileExplorer,
   useSandpack,
 } from "@codesandbox/sandpack-react";
 
 import CustomSandpackFileExplorer from "@/components/CustomSandpackFileExplorer/CustomSandpackFileExplorer";
-// import CodeCollab from "@/components/CodeCollab/CodeCollab";
-import { SandpackCodeEditor } from "@/components/editor/Test";
-
+import Editor from "@/components/editor/Editor";
 export default function Page({ params }: { params: { roomId: string } }) {
   console.log("Rendered Room Page");
   console.log("Room id", params.roomId);
   const socketRef = useRef<Socket | null>(null);
-  useEffect(() => {
-    socketRef.current = io("http://localhost:4000");
-  }, []);
+  // useEffect(() => {
+  //   socketRef.current = io("http://localhost:4000");
+  // }, []);
 
   const fileToStart = {
     "/App.js": `export default function App() {
@@ -42,7 +41,7 @@ export default function Page({ params }: { params: { roomId: string } }) {
         </div>
         <SandpackLayout>
           <CustomSandpackFileExplorer />
-          <SandpackCodeEditor socketRef={socketRef} roomId={params.roomId} />
+          <Editor />
           <SandpackPreview />
         </SandpackLayout>
       </SandpackProvider>
