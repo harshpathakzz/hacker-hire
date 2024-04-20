@@ -16,15 +16,20 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 
+import { SANDBOX_TEMPLATES } from "@codesandbox/sandpack-react";
+
 interface MachineCodingPlaygroundProps {
   params: {
-    slug: [string, string];
+    slug: [TemplateType, string];
   };
 }
+
+type TemplateType = keyof typeof SANDBOX_TEMPLATES;
+
 export default function MachineCodingPlayground({
   params,
 }: MachineCodingPlaygroundProps) {
-  const template = params.slug[0];
+  const template: TemplateType = params.slug[0];
   const roomId = params.slug[1];
   return (
     <div>
