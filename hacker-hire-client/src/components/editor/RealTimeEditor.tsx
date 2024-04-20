@@ -2,6 +2,8 @@
 
 import React, { useRef, useEffect, useState } from "react";
 import Editor from "@monaco-editor/react";
+import * as monaco from "monaco-editor";
+
 import firebase from "firebase/app";
 import "firebase/database";
 import { fromMonaco } from "@hackerrank/firepad";
@@ -12,6 +14,7 @@ import {
   FileTabs,
   SandpackStack,
 } from "@codesandbox/sandpack-react";
+
 interface RealtimeEditorProps {
   roomId: string;
 }
@@ -22,10 +25,10 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
   console.log(params.roomId);
   const { sandpack } = useSandpack();
   const { code, updateCode } = useActiveCode();
-  const editorRef = useRef(null);
+  const editorRef = useRef<monaco.editor.IStandaloneCodeEditor | null>(null);
   const [editorLoaded, setEditorLoaded] = useState(false);
 
-  function handleEditorDidMount(editor, monaco) {
+  function handleEditorDidMount(editor: monaco.editor.IStandaloneCodeEditor) {
     editorRef.current = editor;
     setEditorLoaded(true);
   }
@@ -38,11 +41,15 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
         .database()
         .ref()
         .child(`${params.roomId}/${sanitizedActiveFile}`);
-      const firepad = fromMonaco(dbRef, editorRef.current);
+
       const name = prompt("Enter your Name :");
-      firepad.setUserName(name);
+
+      if (!!editorRef.current && !!name) {
+        const firepad = fromMonaco(dbRef, editorRef.current);
+        firepad.setUserName(name);
+      }
     }
-  }, [editorLoaded]);
+  }, [editorLoaded, params.roomId, sandpack.activeFile]);
 
   return (
     <div>
