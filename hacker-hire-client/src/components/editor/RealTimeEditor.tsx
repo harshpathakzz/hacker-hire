@@ -6,7 +6,12 @@ import firebase from "firebase/app";
 import "firebase/database";
 import { fromMonaco } from "@hackerrank/firepad";
 import firebaseConfig from "@/config/firebaseConfig";
-import { useSandpack, useActiveCode } from "@codesandbox/sandpack-react";
+import {
+  useSandpack,
+  useActiveCode,
+  FileTabs,
+  SandpackStack,
+} from "@codesandbox/sandpack-react";
 interface RealtimeEditorProps {
   roomId: string;
 }
@@ -41,15 +46,22 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
 
   return (
     <div>
-      <Editor
-        height="90vh"
-        defaultLanguage="javascript"
-        theme="vs-dark"
-        onMount={handleEditorDidMount}
-        key={sandpack.activeFile}
-        defaultValue={code}
-        onChange={(value) => updateCode(value || "")}
-      />
+      <SandpackStack style={{ height: "95vh", margin: 0 }}>
+        <FileTabs closableTabs={true} />
+
+        <div style={{ flex: 1, paddingTop: 8, background: "#1e1e1e" }}>
+          <Editor
+            width="100%"
+            height="100%"
+            defaultLanguage="javascript"
+            theme="vs-dark"
+            onMount={handleEditorDidMount}
+            key={sandpack.activeFile}
+            defaultValue={code}
+            onChange={(value) => updateCode(value || "")}
+          />
+        </div>
+      </SandpackStack>
     </div>
   );
 }

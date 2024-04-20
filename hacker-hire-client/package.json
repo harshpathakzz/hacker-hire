@@ -1,5 +1,5 @@
 {
-  "name": "hacker-hire",
+  "name": "hacker-hire-client",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -28,6 +28,7 @@
     "next-themes": "^0.3.0",
     "react": "^18",
     "react-dom": "^18",
+    "react-resizable-panels": "^2.0.18",
     "sandpack-file-explorer": "^0.0.7",
     "socket.io-client": "^4.7.5",
     "tailwind-merge": "^2.2.2",
