@@ -33,7 +33,7 @@ export default function MachineCodingPlayground({
   const roomId = params.slug[1];
   return (
     <div>
-      <CopyURLButton className="m-2" />
+      <CopyURLButton className="m-2 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]" />
       <ResizablePanelGroup direction="horizontal">
         <ResizablePanel className="flex w-1/6 h-[95vh] border">
           <div className=" overflow-y-scroll w-full">
