@@ -39,7 +39,7 @@ const MachineCodingPlayground = () => {
             key={template}
             href={`/code/${template}/${generateRandomUID()}`}
           >
-            <div className="flex items-center justify-center border rounded-lg shadow-md p-4 w-4/5 h-24 m-auto hover:bg-accent hover:scale-110 md:w-48">
+            <div className="flex items-center justify-center border rounded-lg hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] p-4 w-4/5 h-24 m-auto  hover:scale-90  md:w-48">
               <h2 className="text-lg font-semibold">{template}</h2>
             </div>
           </Link>
