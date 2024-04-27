@@ -13,6 +13,7 @@ import {
   FileTabs,
   SandpackStack,
 } from "@codesandbox/sandpack-react";
+import { getLanguageFromExtension } from "@/utils/getLanguageFromExtension";
 
 interface RealtimeEditorProps {
   roomId: string;
@@ -26,7 +27,6 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
 
   const { sandpack } = useSandpack();
   const { code, updateCode } = useActiveCode();
-
   const [editor, setEditor] =
     useState<monaco.editor.IStandaloneCodeEditor | null>(null);
   const [editorLoaded, setEditorLoaded] = useState(false);
@@ -45,9 +45,10 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
 
     const activeFilePath = sandpack.activeFile;
     const sanitizedActiveFile = sandpack.activeFile.replace(
-      /[\\.#$\\\\[\\\]]/g,
+      /[\\.#$\\[\\\]]/g,
       ""
     );
+
     const dbRef = firebase
       .database()
       .ref()
@@ -75,6 +76,9 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
     };
   }, [editorLoaded, params.roomId, sandpack.activeFile, userName, editor]);
 
+  const fileExtension = sandpack.activeFile.split(".").pop();
+  const language = getLanguageFromExtension(fileExtension || "");
+
   return (
     <div>
       <SandpackStack style={{ height: "95vh", margin: 0 }}>
@@ -83,7 +87,7 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
           <Editor
             width="100%"
             height="100%"
-            defaultLanguage="javascript"
+            language={language}
             theme="vs-dark"
             onMount={handleEditorDidMount}
             key={sandpack.activeFile}
