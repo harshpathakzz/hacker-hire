@@ -65,6 +65,12 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
     firepad.setUserName(name);
 
     return () => {
+      const userId = firepad.getConfiguration("userId");
+      const userRef = firebase
+        .database()
+        .ref()
+        .child(`${params.roomId}/${sanitizedActiveFile}/users/${userId}`);
+      userRef.remove();
       firepad.dispose();
     };
   }, [editorLoaded, params.roomId, sandpack.activeFile, userName, editor]);
