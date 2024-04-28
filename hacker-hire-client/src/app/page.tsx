@@ -3,6 +3,7 @@ import React from "react";
 import { SparklesCore } from "@/components/ui/sparkles";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Footer } from "@/components/component/footer";
 
 export default function Home() {
   return (
@@ -22,14 +23,15 @@ export default function Home() {
         Hacker Hire
       </h1>
 
-      <Link href={"/machine-coding"} className="z-50">
-        <Button
-          className="hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)] scale-90 m-2"
-          variant="secondary"
-        >
-          Get started
+      <Link href="/machine-coding" className="z-50">
+        <Button className="relative overflow-hidden group  scale-90 mt-8 px-8 py-4 rounded-full bg-gradient-to-r from-green-400 to-blue-500 text-white font-bold transition-all duration-500 hover:scale-105">
+          <span className="relative z-10">Get started</span>
+          <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-blue-500 to-green-400 transition-all duration-500 transform translate-x-full group-hover:translate-x-0 ease"></div>
         </Button>
       </Link>
+      <div className="mt-10 z-50">
+        <Footer />
+      </div>
     </div>
   );
 }

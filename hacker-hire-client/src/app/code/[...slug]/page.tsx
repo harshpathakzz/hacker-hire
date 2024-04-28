@@ -18,6 +18,7 @@ import {
 
 import { SANDBOX_TEMPLATES } from "@codesandbox/sandpack-react";
 import { CopyURLButton } from "@/components/copy-url-button/copy-url-button";
+import { Footer } from "@/components/component/footer";
 
 interface MachineCodingPlaygroundProps {
   params: {
@@ -35,22 +36,53 @@ export default function MachineCodingPlayground({
     <div>
       <CopyURLButton className="m-2 hover:shadow-[0_20px_50px_rgba(8,_112,_184,_0.7)]" />
       <ResizablePanelGroup direction="horizontal">
-        <ResizablePanel className="flex w-1/6 h-[95vh] border">
-          <div className=" overflow-y-scroll w-full">
-            <h1 className="text-3xl">Questions</h1>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Deserunt,
-            saepe. Quos facilis praesentium ut, nisi veritatis quisquam ab,
-            dolorum, magnam reiciendis perferendis quam. Repellendus
-            voluptatibus placeat dolorem ut delectus exercitationem numquam,
-            tenetur qui saepe ratione deleniti dolor molestias ipsum doloremque
-            inventore! Repudiandae quos aliquid, porro placeat, dolorem rerum
-            cum laboriosam voluptas assumenda officia maxime quas ducimus
-            voluptatibus alias explicabo commodi eligendi! Eligendi odio,
-            delectus ullam non maiores fugit. Voluptate mollitia quisquam ullam
-            animi saepe molestias, culpa maxime odit consequatur vitae error
-            incidunt deleniti veniam iure eaque ipsa dolorum? Commodi tenetur
-            asperiores repellendus aliquam. Voluptatum repellat rerum et culpa
-            eum quis?
+        <ResizablePanel className="flex w-1/6 h-[95vh] border p-2">
+          <div className="overflow-y-scroll w-full">
+            <h1 className="text-3xl mb-1 font-semibold tracking-tight">
+              Debounce
+            </h1>
+            <div>
+              <p>
+                Implement a React component called `DebouncedSearchBar` that
+                renders an input field and applies debouncing to the user input.
+                The component should have the following props:
+              </p>
+              <ul>
+                <li>
+                  <code>debounceDelay</code> (optional, defaults to{" "}
+                  <code>300</code>): The delay in milliseconds before triggering
+                  the search.
+                </li>
+                <li>
+                  <code>onSearch</code> (required): A function that will be
+                  called with the user input after the debounce delay.
+                </li>
+              </ul>
+              <p>
+                The component should debounce the user input, meaning that it
+                should wait for a specified amount of time after the user stops
+                typing before triggering the <code>onSearch</code> function with
+                the current input value.
+              </p>
+              <p>Example usage:</p>
+              <pre>{`import DebouncedSearchBar from './DebouncedSearchBar';
+
+const handleSearch = (searchTerm) => {
+ // Perform search with the searchTerm
+ console.log('Searching for:', searchTerm);
+};
+
+const MyComponent = () => (
+ <DebouncedSearchBar
+   onSearch={handleSearch}
+   debounceDelay={500} // Wait 500ms after user stops typing
+ />
+);`}</pre>
+              <p>
+                Please implement the <code>DebouncedSearchBar</code> component
+                according to the requirements outlined above.
+              </p>
+            </div>
           </div>
         </ResizablePanel>
         <ResizableHandle withHandle />
@@ -77,6 +109,7 @@ export default function MachineCodingPlayground({
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
+      <Footer />
     </div>
   );
 }
