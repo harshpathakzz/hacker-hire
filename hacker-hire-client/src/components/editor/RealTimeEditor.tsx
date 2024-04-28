@@ -93,6 +93,7 @@ export default function RealtimeEditor(params: RealtimeEditorProps) {
             key={sandpack.activeFile}
             defaultValue={code}
             onChange={(value) => updateCode(value || "")}
+            options={{ wordWrap: "on" }}
           />
         </div>
       </SandpackStack>
