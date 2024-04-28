@@ -7,7 +7,7 @@ interface IconProps {
 
 export function Footer() {
   return (
-    <footer className="flex flex-col items-center justify-center gap-4  py-8 mx-10  md:flex-row bg-transparent  z-50">
+    <footer className="flex flex-col items-center justify-center gap-4  py-4 mx-10  md:flex-row bg-transparent  z-50">
       <div className="text-sm ">
         Made with love by{" "}
         <a
