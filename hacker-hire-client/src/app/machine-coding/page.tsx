@@ -1,5 +1,5 @@
 import Link from "next/link";
-
+import { Footer } from "@/components/component/footer";
 const MachineCodingPlayground = () => {
   const templates = [
     "static",
@@ -52,6 +52,7 @@ const MachineCodingPlayground = () => {
           ))}
         </div>
       </div>
+      <Footer />
     </div>
   );
 };

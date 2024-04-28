@@ -18,6 +18,7 @@ import {
 
 import { SANDBOX_TEMPLATES } from "@codesandbox/sandpack-react";
 import { CopyURLButton } from "@/components/copy-url-button/copy-url-button";
+import { Footer } from "@/components/component/footer";
 
 interface MachineCodingPlaygroundProps {
   params: {
@@ -77,6 +78,7 @@ export default function MachineCodingPlayground({
           </div>
         </ResizablePanel>
       </ResizablePanelGroup>
+      <Footer />
     </div>
   );
 }
