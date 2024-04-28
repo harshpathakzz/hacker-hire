@@ -44,8 +44,8 @@ export default function MachineCodingPlayground({
             <div>
               <p>
                 Implement a React component called `DebouncedSearchBar` that
-                renders an input field and applies debouncing to the user's
-                input. The component should have the following props:
+                renders an input field and applies debouncing to the user input.
+                The component should have the following props:
               </p>
               <ul>
                 <li>
@@ -55,11 +55,11 @@ export default function MachineCodingPlayground({
                 </li>
                 <li>
                   <code>onSearch</code> (required): A function that will be
-                  called with the user's input after the debounce delay.
+                  called with the user input after the debounce delay.
                 </li>
               </ul>
               <p>
-                The component should debounce the user's input, meaning that it
+                The component should debounce the user input, meaning that it
                 should wait for a specified amount of time after the user stops
                 typing before triggering the <code>onSearch</code> function with
                 the current input value.
