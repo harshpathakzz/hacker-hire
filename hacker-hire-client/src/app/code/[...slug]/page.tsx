@@ -110,11 +110,14 @@ const MyComponent = () => (
             </div>
           </ResizablePanel>
         </ResizablePanelGroup>
-        <Footer />
       </div>
       <div className="sm:hidden min-h-screen flex items-center justify-center font-bold text-2xl">
-        Use desktop to use editor
+        <div className="border h-auto flex items-center justify-center p-4 rounded-md shadow-light-blue m-4 text-center">
+          Desktop mode recommended. Certain features may be limited or
+          unavailable on mobile devices.
+        </div>
       </div>
+      <Footer />
     </>
   );
 }
