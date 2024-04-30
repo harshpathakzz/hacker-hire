@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     siteName: "Hacker Hire",
     images: [
       {
-        url: "/hacker-hire.png",
+        url: "https://firebasestorage.googleapis.com/v0/b/firepad-72e5f.appspot.com/o/hacker-hire.png?alt=media&token=8b2972bb-c950-4d89-863f-da3e7f75446c",
         width: 1200,
         height: 630,
       },
