@@ -10,13 +10,13 @@ export const metadata: Metadata = {
   title: "Hacker Hire",
   description: "Place to conduct tech interviews",
   openGraph: {
-    title: "My Website",
-    description: "This is my awesome website",
+    title: "Hacker Hire",
+    description: "Place to conduct tech interviews",
     url: "https://hacker-hire.vercel.app",
-    siteName: "My Website",
+    siteName: "Hacker Hire",
     images: [
       {
-        url: "/haker-hire.png",
+        url: "/hacker-hire.png",
         width: 1200,
         height: 630,
       },
