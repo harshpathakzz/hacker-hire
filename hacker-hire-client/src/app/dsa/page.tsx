@@ -7,6 +7,7 @@ import {
 import { CopyURLButton } from "@/components/copy-url-button/copy-url-button";
 import { Footer } from "@/components/component/footer";
 import { IOtabs } from "@/components/input-output-tabs/input-output-tabs";
+import DsaEditor from "@/components/editor/dsa-editor";
 
 const DsaPlayground: FC = () => {
   return (
@@ -21,17 +22,12 @@ const DsaPlayground: FC = () => {
         <ResizableHandle />
         <ResizablePanel defaultSize={50}>
           <ResizablePanelGroup direction="vertical">
-            <ResizablePanel defaultSize={75}>
+            <ResizablePanel defaultSize={100}>
               <div className="flex h-full items-center justify-center p-6">
-                <span className="font-semibold">Two</span>
+                <DsaEditor />
               </div>
             </ResizablePanel>
             <ResizableHandle />
-            <ResizablePanel defaultSize={25}>
-              <div className="flex h-full  p-3">
-                <IOtabs />
-              </div>
-            </ResizablePanel>
           </ResizablePanelGroup>
         </ResizablePanel>
       </ResizablePanelGroup>

@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 
 export const IOtabs: FC = () => {
   return (
-    <div className="w-full p-3">
+    <div className="w-full py-3">
       <Tabs defaultValue="input" className="">
         <TabsList className="">
           <TabsTrigger value="input">Input</TabsTrigger>
