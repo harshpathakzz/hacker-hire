@@ -14,6 +14,7 @@ import {
   ResizablePanelGroup,
 } from "@/components/ui/resizable";
 import { IOtabs } from "@/components/input-output-tabs/input-output-tabs";
+import { Button } from "@/components/ui/button";
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
@@ -93,6 +94,7 @@ export default function DsaEditor() {
       <ResizablePanel defaultSize={25}>
         <div className="flex h-full ">
           <IOtabs />
+          <Button className="m-3">Submit</Button>
         </div>
       </ResizablePanel>
     </ResizablePanelGroup>
