@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 
 export const executeCode = async (
   sourceCode: string,
@@ -31,6 +31,12 @@ export const executeCode = async (
     const response = await axios.request(options);
     return response.data;
   } catch (error) {
-    throw new Error(`Error: ${error.response.data}`);
+    if (axios.isAxiosError(error)) {
+      // `error` is of type AxiosError
+      throw new Error(`Error: ${error.response?.data}`);
+    } else {
+      // Handle other types of errors
+      throw new Error(`Unknown Error: ${error}`);
+    }
   }
 };
