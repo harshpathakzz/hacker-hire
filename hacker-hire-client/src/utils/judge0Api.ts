@@ -6,7 +6,7 @@ export const executeCode = async (
   input: string
 ) => {
   const apiUrl = "https://judge0-ce.p.rapidapi.com/submissions";
-  const apiKey = ""; // Replace with your actual RapidAPI key
+  const apiKey = "";
 
   const options = {
     method: "POST",
