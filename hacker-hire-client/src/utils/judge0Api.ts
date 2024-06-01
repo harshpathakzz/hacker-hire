@@ -1,4 +1,4 @@
-import axios, { AxiosError } from "axios";
+import axios, { isAxiosError } from "axios";
 
 export const executeCode = async (
   sourceCode: string,
