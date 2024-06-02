@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
+import { FC } from "react";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Textarea } from "@/components/ui/textarea";
 import Editor from "@monaco-editor/react";
 import * as monaco from "monaco-editor";
 import firebase from "firebase/app";
@@ -93,7 +96,23 @@ export default function DsaEditor() {
       <ResizableHandle />
       <ResizablePanel defaultSize={25}>
         <div className="flex h-full ">
-          <IOtabs />
+          <div className="w-full py-3 h-full">
+            <Tabs defaultValue="input" className="h-full">
+              <TabsList className=" mb-2">
+                <TabsTrigger value="input">Input</TabsTrigger>
+                <TabsTrigger value="console">Output</TabsTrigger>
+              </TabsList>
+              <TabsContent value="input" className="m-0.5 h-full">
+                <Textarea
+                  placeholder="Type your input here."
+                  className="h-4/5"
+                />
+              </TabsContent>
+              <TabsContent value="console">
+                Display your output here.
+              </TabsContent>
+            </Tabs>
+          </div>
           <Button className="m-3">Submit</Button>
         </div>
       </ResizablePanel>
