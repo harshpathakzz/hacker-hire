@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Footer } from "@/components/component/footer";
 import { v4 as uuidv4 } from "uuid";
