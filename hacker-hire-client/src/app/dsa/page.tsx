@@ -365,7 +365,7 @@ const DsaPlayground: React.FC = () => {
 
       {/* Whiteboard Modal - Fixed CSS */}
       <Dialog open={whiteboardOpen} onOpenChange={setWhiteboardOpen}>
-        <DialogContent className="max-w-[95vw] w-[95vw] max-h-[90vh] h-[90vh] p-0 bg-white overflow-hidden">
+        <DialogContent className="max-w-[95vw] w-3/4 max-h-[90vh] h-[90vh] p-0 overflow-hidden">
           <DialogHeader className="p-4 border-b">
             <DialogTitle>Collaborative Whiteboard</DialogTitle>
           </DialogHeader>

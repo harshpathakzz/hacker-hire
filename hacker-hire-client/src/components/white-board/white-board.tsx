@@ -41,15 +41,7 @@ const WhiteBoard: React.FC<WhiteBoardProps> = ({ roomId, username }) => {
 
   return (
     <div className="w-full h-full">
-      {/* Added important styles to ensure TLDraw fills the container */}
-      <style jsx global>{`
-        .tldraw {
-          width: 100% !important;
-          height: 100% !important;
-          position: relative !important;
-          overflow: hidden !important;
-        }
-      `}</style>
+
       <Tldraw store={store} user={user} />
     </div>
   );
